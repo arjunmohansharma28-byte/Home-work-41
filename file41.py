@@ -1,0 +1,30 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+df = sns.load_dataset("planets")
+df = df.dropna()
+print(df.head())
+print(df.info())
+print(df.describe())
+sns.histplot(data=df, x='orbital_period', bins=20, color='red')
+plt.title("Orbital Periods")
+plt.xlabel("Orbital Period (Days)")
+plt.ylabel("Count")
+#plt.show()
+
+sns.kdeplot()
+sns.histplot(data=df, x='orbital_period', bins=20, color='cyan', kde=True)
+plt.title("Orbital Periods")
+plt.xlabel("Orbital Period (Days)")
+plt.ylabel("Count")
+#plt.show()
+
+sns.scatterplot(data=df, x='distance', y='orbital_period', hue='method')
+plt.title("Distance")
+plt.xlabel("Orbital Period (Days)")
+plt.ylabel("Count")
+#plt.show()
+
+corr = df.corr(numeric_only=True)
+sns.heatmap(corr, annot=True, cmap='coolwarm')
+plt.title('Correlation Heatmap - Planet Discovery Data')
+plt.show()
